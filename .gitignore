@@ -1,0 +1,65 @@
+# ----------------------
+# Python
+# ----------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# ----------------------
+# Virtual Environment
+# ----------------------
+venv/
+env/
+.venv/
+
+# ----------------------
+# Jupyter Notebook
+# ----------------------
+.ipynb_checkpoints/
+
+# ----------------------
+# Data Files
+# ----------------------
+data/raw/*
+data/processed/*
+
+# Keep folder structure but ignore files
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# ----------------------
+# Logs
+# ----------------------
+*.log
+
+# ----------------------
+# VS Code
+# ----------------------
+.vscode/
+
+# ----------------------
+# OS Files
+# ----------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------
+# Environment Variables
+# ----------------------
+.env
+
+# ----------------------
+# Node (Frontend future)
+# ----------------------
+node_modules/
+dist/
+build/
+
+# ----------------------
+# Model Files (later)
+# ----------------------
+*.h5
+*.pkl
+*.joblib
