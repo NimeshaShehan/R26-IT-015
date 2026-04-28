@@ -250,10 +250,21 @@ This component integrates with:
 
 ---
 
-📈 Model Accuracy
+## 📈 Model Accuracy
 
-MetricValueTrain/Test Accuracy96.32%Cross Validation (5-fold)94.85% ± 1.23%Training rows5,440Test rows1,360ClassesChemical · Mechanical · Thermal
-ClassPrecisionRecallF1-ScoreChemical0.970.960.96Mechanical0.950.970.96Thermal0.960.940.95
+| Metric | Value |
+|---|---|
+| Train/Test Accuracy | 96.32% |
+| Cross Validation (5-fold) | 94.85% ± 1.23% |
+| Training rows | 5,440 |
+| Test rows | 1,360 |
+| Classes | Chemical · Mechanical · Thermal |
+
+| Class | Precision | Recall | F1-Score |
+|---|---|---|---|
+| Chemical | 0.97 | 0.96 | 0.96 |
+| Mechanical | 0.95 | 0.97 | 0.96 |
+| Thermal | 0.96 | 0.94 | 0.95 |
 
 <div align="center">
 
