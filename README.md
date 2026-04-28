@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Component 3 — Smart Process Optimization Engine
 
 ## Overview
@@ -44,3 +45,6 @@ smart-process-optimization-engine/
 - pre_drying_required
 - safety_status: CRITICAL / WARNING / SECURE
 - chemical_agent
+=======
+# R26-IT-015
+>>>>>>> ca7a3956332c8888afb3ccf74d5a9a4f0b013a34
