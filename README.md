@@ -45,6 +45,5 @@ smart-process-optimization-engine/
 - pre_drying_required
 - safety_status: CRITICAL / WARNING / SECURE
 - chemical_agent
-=======
 # R26-IT-015
 
