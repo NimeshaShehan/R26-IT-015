@@ -1,0 +1,8 @@
+*.pkl
+*.h5
+*.pyc
+__pycache__/
+.env
+firebase_key.json
+node_modules/
+Thumbs.db
