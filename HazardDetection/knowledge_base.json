@@ -1,0 +1,279 @@
+{
+  "Mobile": {
+    "materials": [
+      "Lithium-ion Battery",
+      "Gold",
+      "Cobalt",
+      "Lead",
+      "Mercury"
+    ],
+    "hazards": {
+      "Lithium-ion Battery": {
+        "risk": "Thermal runaway, fire, explosion if damaged",
+        "level": "HIGH"
+      },
+      "Lead": {
+        "risk": "Toxic if ingested or inhaled",
+        "level": "HIGH"
+      },
+      "Mercury": {
+        "risk": "Neurotoxic, environmental contamination",
+        "level": "HIGH"
+      }
+    },
+    "ppe": [
+      "Heat-resistant gloves",
+      "Safety goggles",
+      "N95 mask"
+    ],
+    "handling": [
+      "Do not puncture or crush the battery",
+      "Keep away from heat sources",
+      "Store in fire-proof container",
+      "Discharge battery before disassembly"
+    ],
+    "recovery_value": "HIGH - Gold, Cobalt, Copper recoverable"
+  },
+  "Battery": {
+    "materials": [
+      "Lithium",
+      "Cobalt",
+      "Nickel",
+      "Manganese"
+    ],
+    "hazards": {
+      "Lithium": {
+        "risk": "Highly flammable, reacts violently with water",
+        "level": "CRITICAL"
+      },
+      "Cobalt": {
+        "risk": "Carcinogenic if inhaled as dust",
+        "level": "HIGH"
+      }
+    },
+    "ppe": [
+      "Fire-resistant gloves",
+      "Face shield",
+      "Fire extinguisher nearby"
+    ],
+    "handling": [
+      "Never short circuit terminals",
+      "Store in cool dry place",
+      "Use Class D fire extinguisher if fire occurs",
+      "Transport in approved containers only"
+    ],
+    "recovery_value": "HIGH - Lithium, Cobalt recoverable"
+  },
+  "PCB": {
+    "materials": [
+      "Lead solder",
+      "Beryllium",
+      "Cadmium",
+      "Brominated flame retardants"
+    ],
+    "hazards": {
+      "Lead solder": {
+        "risk": "Toxic, developmental damage",
+        "level": "HIGH"
+      },
+      "Beryllium": {
+        "risk": "Carcinogenic lung disease",
+        "level": "CRITICAL"
+      },
+      "Cadmium": {
+        "risk": "Kidney damage, carcinogenic",
+        "level": "HIGH"
+      }
+    },
+    "ppe": [
+      "Nitrile gloves",
+      "N95/P100 respirator",
+      "Safety goggles",
+      "Lab coat"
+    ],
+    "handling": [
+      "Do not sand or grind without respiratory protection",
+      "Wash hands thoroughly after handling",
+      "Dispose in certified e-waste facility",
+      "Do not burn - releases toxic fumes"
+    ],
+    "recovery_value": "HIGH - Gold, Silver, Palladium recoverable"
+  },
+  "Television": {
+    "materials": [
+      "Lead glass (CRT)",
+      "Mercury (LCD)",
+      "Cadmium",
+      "Arsenic"
+    ],
+    "hazards": {
+      "Lead glass": {
+        "risk": "Lead exposure if glass broken",
+        "level": "HIGH"
+      },
+      "Mercury": {
+        "risk": "Neurotoxic vapor release",
+        "level": "HIGH"
+      }
+    },
+    "ppe": [
+      "Heavy-duty gloves",
+      "Safety goggles",
+      "Respirator"
+    ],
+    "handling": [
+      "Handle CRT screens with extreme care - implosion risk",
+      "Do not break LCD backlight - mercury release",
+      "Keep upright during transport",
+      "Discharge CRT before disassembly"
+    ],
+    "recovery_value": "MEDIUM - Copper, Aluminum recoverable"
+  },
+  "Printer": {
+    "materials": [
+      "Toner (carbon black)",
+      "Selenium drum",
+      "Lead"
+    ],
+    "hazards": {
+      "Toner": {
+        "risk": "Respiratory irritant if inhaled",
+        "level": "MEDIUM"
+      },
+      "Selenium": {
+        "risk": "Toxic in large amounts",
+        "level": "MEDIUM"
+      }
+    },
+    "ppe": [
+      "Dust mask",
+      "Gloves",
+      "Safety goggles"
+    ],
+    "handling": [
+      "Handle toner cartridges carefully - avoid spills",
+      "Do not inhale toner dust",
+      "Dispose toner cartridges separately"
+    ],
+    "recovery_value": "LOW - Steel, Copper recoverable"
+  },
+  "Keyboard": {
+    "materials": [
+      "ABS Plastic",
+      "Steel",
+      "Small circuit boards"
+    ],
+    "hazards": {
+      "ABS Plastic": {
+        "risk": "Releases toxic fumes if burned",
+        "level": "LOW"
+      }
+    },
+    "ppe": [
+      "Standard gloves"
+    ],
+    "handling": [
+      "Do not burn plastic components",
+      "Separate metal from plastic before recycling"
+    ],
+    "recovery_value": "LOW - Steel, small amounts of copper"
+  },
+  "Mouse": {
+    "materials": [
+      "ABS Plastic",
+      "Steel",
+      "Small PCB",
+      "LED components"
+    ],
+    "hazards": {
+      "Small PCB": {
+        "risk": "Lead solder present",
+        "level": "LOW"
+      }
+    },
+    "ppe": [
+      "Standard gloves"
+    ],
+    "handling": [
+      "Separate PCB from plastic housing",
+      "Dispose PCB in e-waste stream"
+    ],
+    "recovery_value": "LOW - Minimal recoverable materials"
+  },
+  "Microwave": {
+    "materials": [
+      "Magnetron (Beryllium oxide)",
+      "Capacitors",
+      "Steel"
+    ],
+    "hazards": {
+      "Magnetron": {
+        "risk": "Beryllium oxide is extremely toxic if inhaled",
+        "level": "CRITICAL"
+      },
+      "Capacitors": {
+        "risk": "High voltage stored - electric shock risk",
+        "level": "HIGH"
+      }
+    },
+    "ppe": [
+      "Heavy gloves",
+      "Face shield",
+      "Do NOT disassemble magnetron"
+    ],
+    "handling": [
+      "NEVER disassemble magnetron - beryllium oxide risk",
+      "Discharge capacitors before any work",
+      "Send to specialist recycler only"
+    ],
+    "recovery_value": "MEDIUM - Steel, Copper recoverable"
+  },
+  "Washing Machine": {
+    "materials": [
+      "Steel",
+      "Copper motor",
+      "Plastic",
+      "PCB"
+    ],
+    "hazards": {
+      "PCB": {
+        "risk": "Lead solder",
+        "level": "LOW"
+      }
+    },
+    "ppe": [
+      "Standard gloves",
+      "Safety boots"
+    ],
+    "handling": [
+      "Drain water completely before handling",
+      "Remove motor for copper recovery",
+      "Separate steel for recycling"
+    ],
+    "recovery_value": "HIGH - Steel, Copper motor highly valuable"
+  },
+  "Player": {
+    "materials": [
+      "PCB",
+      "Laser diode",
+      "Plastic",
+      "Small battery"
+    ],
+    "hazards": {
+      "Laser diode": {
+        "risk": "Eye damage if exposed to laser",
+        "level": "MEDIUM"
+      }
+    },
+    "ppe": [
+      "Gloves",
+      "Laser safety goggles if disassembling"
+    ],
+    "handling": [
+      "Do not look into laser assembly",
+      "Remove battery before disassembly",
+      "Dispose PCB in e-waste stream"
+    ],
+    "recovery_value": "LOW - Small amounts of recoverable materials"
+  }
+}
