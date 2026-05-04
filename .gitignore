@@ -63,3 +63,5 @@ build/
 *.h5
 *.pkl
 *.joblib
+
+01_data_check_04.ipynb
