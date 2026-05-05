@@ -1,35 +1,47 @@
+import { ConfigProvider, Layout } from 'antd'
 import Dashboard from './components/Dashboard.jsx'
 import Header from './components/Header.jsx'
 import Sidebar from './components/Sidebar.jsx'
 
+const { Content, Footer } = Layout
+
 function App() {
-  const appStyles = {
-    minHeight: '100vh',
-    display: 'flex',
-    flexWrap: 'wrap',
-    background: '#eaf1f5',
-    color: '#0f172a',
-  }
-
-  const mainStyles = {
-    flex: '1 1 0',
-    minWidth: '0',
-    padding: '24px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '20px',
-    boxSizing: 'border-box',
-  }
-
   return (
-    <div style={appStyles}>
-      <Sidebar />
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#2e7d32',
+          borderRadius: 12,
+          colorBgLayout: '#f5f7fa',
+          colorText: '#0f172a',
+        },
+      }}
+    >
+      <Layout style={{ minHeight: '100vh', background: '#f5f7fa' }}>
+        <Sidebar />
 
-      <main style={mainStyles}>
-        <Header title="Command Dashboard" />
-        <Dashboard />
-      </main>
-    </div>
+        <Layout style={{ minHeight: '100vh', background: 'transparent' }}>
+          <Layout.Header
+            style={{
+              height: 'auto',
+              lineHeight: 'normal',
+              padding: '24px 24px 0',
+              background: 'transparent',
+            }}
+          >
+            <Header />
+          </Layout.Header>
+
+          <Content style={{ padding: '24px', overflow: 'initial' }}>
+            <Dashboard />
+          </Content>
+
+          <Footer style={{ textAlign: 'center', background: 'transparent', color: '#94a3b8' }}>
+            EcoTrack SL National Monitoring Unit
+          </Footer>
+        </Layout>
+      </Layout>
+    </ConfigProvider>
   )
 }
 

@@ -4,7 +4,7 @@
   line-height: 1.5;
   font-weight: 400;
   color: #0f172a;
-  background: #edf5f7;
+  background: #f5f7fa;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,10 +24,16 @@ body,
 
 body {
   min-height: 100vh;
+  margin: 0;
+  background: #f5f7fa;
 }
 
 button,
 input,
 select {
   font: inherit;
+}
+
+#root {
+  min-height: 100vh;
 }
