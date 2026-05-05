@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Avatar, Layout, Menu, Space, Typography } from 'antd'
 import {
   BarChartOutlined,
@@ -18,12 +17,16 @@ const menuItems = [
   { key: 'report', icon: <ProfileOutlined />, label: 'Report Waste' },
   { key: 'predictions', icon: <LineChartOutlined />, label: 'Predictions' },
   { key: 'insights', icon: <BarChartOutlined />, label: 'Data Insights' },
-  { key: 'hubs', icon: <GlobalOutlined />, label: 'Network Hubs' },
+  { key: 'network', icon: <GlobalOutlined />, label: 'Network Hubs' },
   { key: 'settings', icon: <SettingOutlined />, label: 'System Settings' },
 ]
 
-function Sidebar() {
-  const [selectedKey, setSelectedKey] = useState('dashboard')
+function Sidebar({ selectedKey = 'dashboard', onSelect }) {
+  const handleClick = ({ key }) => {
+    if (onSelect) {
+      onSelect(key)
+    }
+  }
 
   return (
     <Sider
@@ -75,7 +78,7 @@ function Sidebar() {
           theme="dark"
           mode="inline"
           selectedKeys={[selectedKey]}
-          onClick={({ key }) => setSelectedKey(key)}
+          onClick={handleClick}
           items={menuItems}
           style={{
             background: 'transparent',
