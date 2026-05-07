@@ -1,6 +1,6 @@
 """
-Component 3 - GET /materials route - Version 2
-14 MSW (Municipal Solid Waste) Materials
+Component 3 - GET /materials route
+Returns all supported materials list
 """
 
 from fastapi import APIRouter
@@ -8,29 +8,30 @@ from fastapi import APIRouter
 router = APIRouter()
 
 MATERIALS = [
-    # Paper & Cardboard - Mechanical
-    { "name": "Newspapers",         "waste_type": "Organic", "category": "Paper",   "toxicity": "Low",    "method": "Mechanical" },
-    { "name": "Cardboard Boxes",    "waste_type": "Organic", "category": "Paper",   "toxicity": "Low",    "method": "Mechanical" },
-    { "name": "Office Paper",       "waste_type": "Organic", "category": "Paper",   "toxicity": "Low",    "method": "Mechanical" },
-    # Plastics - Thermal
-    { "name": "PET Water Bottles",  "waste_type": "Plastic", "category": "Plastic", "toxicity": "Low",    "method": "Thermal"    },
-    { "name": "Food Containers",    "waste_type": "Plastic", "category": "Plastic", "toxicity": "Low",    "method": "Thermal"    },
-    { "name": "Plastic Bags",       "waste_type": "Plastic", "category": "Plastic", "toxicity": "Low",    "method": "Thermal"    },
-    # Glass - Mechanical
-    { "name": "Glass Bottles",      "waste_type": "Glass",   "category": "Glass",   "toxicity": "Low",    "method": "Mechanical" },
-    { "name": "Glass Jars",         "waste_type": "Glass",   "category": "Glass",   "toxicity": "Low",    "method": "Mechanical" },
-    # Textiles - Mechanical
-    { "name": "Old Clothes",        "waste_type": "Organic", "category": "Textile", "toxicity": "Low",    "method": "Mechanical" },
-    { "name": "Fabric Scraps",      "waste_type": "Organic", "category": "Textile", "toxicity": "Low",    "method": "Mechanical" },
-    # Rubber - Thermal
-    { "name": "Old Tires",          "waste_type": "Rubber",  "category": "Rubber",  "toxicity": "Medium", "method": "Thermal"    },
-    { "name": "Rubber Footwear",    "waste_type": "Rubber",  "category": "Rubber",  "toxicity": "Low",    "method": "Thermal"    },
-    # Wood - Mechanical
-    { "name": "Wooden Pallets",     "waste_type": "Organic", "category": "Wood",    "toxicity": "Low",    "method": "Mechanical" },
-    { "name": "Furniture Scraps",   "waste_type": "Organic", "category": "Wood",    "toxicity": "Low",    "method": "Mechanical" },
+    { "name": "Aluminum",             "waste_type": "Metal",    "category": "Metal",    "toxicity": "Low"    },
+    { "name": "Steel",                "waste_type": "Metal",    "category": "Metal",    "toxicity": "Low"    },
+    { "name": "Scrap Steel",          "waste_type": "Metal",    "category": "Metal",    "toxicity": "Low"    },
+    { "name": "Sheet Metal",          "waste_type": "Metal",    "category": "Metal",    "toxicity": "Low"    },
+    { "name": "Lead-Based Alloy",     "waste_type": "Metal",    "category": "Metal",    "toxicity": "High"   },
+    { "name": "Polypropylene",        "waste_type": "Plastic",  "category": "Plastic",  "toxicity": "Low"    },
+    { "name": "Plastic Resin",        "waste_type": "Plastic",  "category": "Plastic",  "toxicity": "Low"    },
+    { "name": "Reprocessed Plastics", "waste_type": "Plastic",  "category": "Plastic",  "toxicity": "Low"    },
+    { "name": "Packaging",            "waste_type": "Plastic",  "category": "Plastic",  "toxicity": "Low"    },
+    { "name": "Circuit Board",        "waste_type": "E-waste",  "category": "E-waste",  "toxicity": "High"   },
+    { "name": "Machine Component",    "waste_type": "E-waste",  "category": "E-waste",  "toxicity": "Medium" },
+    { "name": "Cotton",               "waste_type": "Organic",  "category": "Organic",  "toxicity": "Low"    },
+    { "name": "Textiles",             "waste_type": "Organic",  "category": "Organic",  "toxicity": "Low"    },
+    { "name": "Solvent",              "waste_type": "Chemical", "category": "Chemical", "toxicity": "High"   },
+    { "name": "Industrial Oil",       "waste_type": "Chemical", "category": "Chemical", "toxicity": "Medium" },
+    { "name": "Coolant",              "waste_type": "Chemical", "category": "Chemical", "toxicity": "Medium" },
+    { "name": "Catalyst",             "waste_type": "Chemical", "category": "Chemical", "toxicity": "Medium" },
 ]
 
 
 @router.get("/materials")
 def get_materials():
-    return { "total": len(MATERIALS), "materials": MATERIALS }
+    """Return all supported materials list."""
+    return {
+        "total"    : len(MATERIALS),
+        "materials": MATERIALS
+    }
