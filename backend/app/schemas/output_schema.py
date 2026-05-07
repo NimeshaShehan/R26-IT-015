@@ -9,7 +9,7 @@ from typing import Optional
 class OptimizeResponse(BaseModel):
     # Input echo
     material_name      : str
-    waste_type         : str
+    waste_type         : Optional[str] = None
     weight_kg          : float
     moisture_condition : str
 
@@ -27,12 +27,23 @@ class OptimizeResponse(BaseModel):
     pre_drying_required  : bool
     toxicity_level       : str
 
+    # Pre-drying specific
+    pre_drying_temp_c    : Optional[float] = None
+    pre_drying_time_min  : Optional[float] = None
+    pre_drying_action    : Optional[str]   = None
+
     # Chemical agent info
     chemical_agent        : Optional[str] = None
     chemical_concentration: Optional[str] = None
     chemical_purpose      : Optional[str] = None
     handling_note         : Optional[str] = None
 
+    # Cooling
+    cooling_time_min : Optional[float] = None
+    cooling_method   : Optional[str]   = None
+    target_temp_c    : Optional[float] = None
+
     # Metadata
+    batch_id  : Optional[str] = None
     timestamp : Optional[str] = None
     doc_id    : Optional[str] = None
