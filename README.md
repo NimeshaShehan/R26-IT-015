@@ -30,30 +30,30 @@
 
 ## 📌 Overview
 
-Component 3 is the **Smart Process Optimization Engine** of the AI-Powered Automated Waste Segregation and E-waste Recycling System. It receives waste material data from Component 1 (Contamination Detection) and generates a complete **process recipe** — including the recommended recycling method, optimal temperature, processing time, energy consumption, chemical agents, and safety status.
+Component 3 is the **Smart Process Optimization Engine** of the AI-Powered Automated Waste Segregation and E-waste Recycling System. It receives waste material data and generates a complete **process recipe** — including the recommended recycling method, optimal temperature, processing time, energy consumption, and safety status.
 
-The engine uses **3 models** working together:
-- A **Decision Tree** classifier to predict the best recycling method
+The engine uses a **Hybrid Architecture** with 3 models working together:
+- A **Decision Tree Classifier** to predict the best recycling method (Mechanical or Thermal)
 - A **MCDM Optimizer** to calculate optimal processing parameters
-- A **Rule-Based Expert System** to determine safety status
+- A **Rule-Based Expert System** to determine safety status and pre-drying requirements
 
 ---
 
 ## 🏗️ System Architecture
 
 ```
-Component 1 Output
-(waste_type + weight + moisture)
+Input
+(material_name + weight_kg + moisture_condition + waste_type)
           │
           ▼
     ┌─────────────────────────────┐
     │   FastAPI Backend           │
-    │   POST /optimize            │
+    │   POST /api/optimize        │
     │                             │
     │  ┌─────────────────────┐    │
     │  │  Decision Tree      │    │
     │  │  model.pkl          │───►│ recommended_method
-    │  └─────────────────────┘    │
+    │  └─────────────────────┘    │ (Mechanical / Thermal)
     │                             │
     │  ┌─────────────────────┐    │
     │  │  MCDM Optimizer     │───►│ temp · time · energy
@@ -62,7 +62,7 @@ Component 1 Output
     │                             │
     │  ┌─────────────────────┐    │
     │  │  Rule-Based System  │───►│ safety_status
-    │  │  safety_service.py  │    │
+    │  │  safety_service.py  │    │ pre_drying_required
     │  └─────────────────────┘    │
     └─────────────────────────────┘
           │
@@ -79,9 +79,8 @@ Component 1 Output
 | Model | Type | Library | Purpose | Train? |
 |---|---|---|---|---|
 | **Decision Tree** | ML Classifier | Scikit-learn | Predict recommended_method | ✅ Yes |
-| **MCDM Optimizer** | Math Optimization | Scipy | Calculate temp/time/energy | ❌ No |
+| **MCDM Optimizer** | Math Optimization | Pure Python | Calculate temp/time/energy | ❌ No |
 | **Rule-Based** | Expert System | Pure Python | Safety status check | ❌ No |
-| **Property DB** | Cloud Database | Firestore | Material lookup + history | ❌ No |
 
 ---
 
@@ -89,15 +88,18 @@ Component 1 Output
 
 ```json
 {
-  "recommended_method": "Chemical",
-  "optimal_temp_c": 300,
-  "processing_time_min": 45,
-  "energy_kwh": 8.5,
+  "material_name": "PET Water Bottles",
+  "recommended_method": "Thermal",
+  "optimal_temp_c": 265,
+  "processing_time_min": 39,
+  "energy_kwh": 5.5,
+  "recycling_efficiency_pct": 87.3,
   "pre_drying_required": true,
-  "safety_status": "CRITICAL",
-  "chemical_agent": "Nitric Acid (HNO3)",
-  "chemical_concentration": "30%",
-  "chemical_purpose": "Dissolve and extract precious metals"
+  "pre_drying_temp_c": 106,
+  "pre_drying_time_min": 11.7,
+  "safety_status": "WARNING",
+  "chemical_agent": "None",
+  "toxicity_level": "Low"
 }
 ```
 
@@ -105,9 +107,9 @@ Component 1 Output
 
 | Status | Condition | Action |
 |---|---|---|
-| 🔴 **CRITICAL** | Wet + High toxicity | Stop — PPE required — Supervisor needed |
-| 🟡 **WARNING** | Wet + Medium/Low toxicity | Pre-drying recommended |
-| 🟢 **SECURE** | Dry material | Normal processing |
+| 🔴 **CRITICAL** | Wet + High toxicity | Stop — Full PPE required — Supervisor needed |
+| 🟡 **WARNING** | Wet + Any toxicity | Pre-drying required before processing |
+| 🟢 **SECURE** | Dry material | Normal processing — standard safety |
 
 ---
 
@@ -115,41 +117,42 @@ Component 1 Output
 
 | Dataset | Rows | Purpose | Status |
 |---|---|---|---|
-| `component3_training.csv` | 6,800 | Decision Tree training | ✅ Generated |
+| `component3_training_v2.csv` | 7,000 | Decision Tree training | ✅ Generated |
 | `recycling_benchmark.csv` | 7,000 | MCDM baseline values | ✅ Uploaded |
-| `environmental_data.csv` | 7,000 | Ambient temp/humidity | ✅ Uploaded |
-| `manufacturing_data.csv` | 7,000 | Energy baseline | ✅ Uploaded |
 | `safety_rules.json` | — | Rule-based safety rules | ✅ Generated |
 | `chemical_agent_map.json` | — | Chemical agent mapping | ✅ Generated |
 
-### Materials Covered — 17
+### Materials Covered — 14 MSW Materials
 
-| Category | Materials |
-|---|---|
-| 🔵 **Metal** | Aluminum, Steel, Scrap Steel, Sheet Metal, Lead-Based Alloy |
-| 🟠 **Plastic** | Polypropylene, Plastic Resin, Reprocessed Plastics, Packaging |
-| 🔴 **E-waste** | Circuit Board, Machine Component |
-| 🟢 **Organic** | Cotton, Textiles |
-| 🟣 **Chemical** | Solvent, Industrial Oil, Coolant, Catalyst |
+| Category | Method | Materials |
+|---|---|---|
+| 📄 **Paper** | Mechanical | Newspapers, Cardboard Boxes, Office Paper |
+| 🧴 **Plastic** | Thermal | PET Water Bottles, Food Containers, Plastic Bags |
+| 🫙 **Glass** | Mechanical | Glass Bottles, Glass Jars |
+| 👕 **Textile** | Mechanical | Old Clothes, Fabric Scraps |
+| 🛞 **Rubber** | Thermal | Old Tires, Rubber Footwear |
+| 🪵 **Wood** | Mechanical | Wooden Pallets, Furniture Scraps |
+
+> **Note:** Plastic and Rubber use Thermal method. All others use Mechanical method. Wet materials automatically trigger pre-drying cycle.
 
 ---
 
 ## 📁 Folder Structure
 
 ```
-smart-process-optimization-engine/
+component3-smart-optimization/
 │
 ├── backend/
 │   ├── requirements.txt
-│   ├── Dockerfile
 │   └── app/
-│       ├── main.py                    # FastAPI app + startup
-│       ├── config.py                  # Firebase + env settings
+│       ├── main.py                      # FastAPI app + startup
+│       ├── config.py                    # Firebase + env settings
 │       │
 │       ├── api/routes/
-│       │   ├── optimize.py            # POST /optimize
-│       │   ├── history.py             # GET /history
-│       │   └── health.py              # GET /health
+│       │   ├── optimize.py              # POST /api/optimize
+│       │   ├── history.py               # GET  /api/history
+│       │   ├── health.py                # GET  /api/health
+│       │   └── materials.py             # GET  /api/materials
 │       │
 │       ├── services/
 │       │   ├── optimization_service.py  # Decision Tree predict
@@ -167,15 +170,8 @@ smart-process-optimization-engine/
 │       │
 │       ├── data/
 │       │   ├── recycling_benchmark.csv
-│       │   ├── environmental_data.csv
-│       │   ├── manufacturing_data.csv
 │       │   ├── safety_rules.json
 │       │   └── chemical_agent_map.json
-│       │
-│       ├── utils/
-│       │   ├── feature_engineering.py
-│       │   ├── data_loader.py
-│       │   └── validators.py
 │       │
 │       └── schemas/
 │           ├── input_schema.py
@@ -183,30 +179,20 @@ smart-process-optimization-engine/
 │
 ├── ml_training/
 │   └── material_model/
-│       ├── train.py                   # run → generates pkl files
-│       ├── dataset/
-│       │   └── component3_training.csv
-│       └── notebook/
-│           └── component3_validation.ipynb
+│       ├── train_v2.py                  # run → generates pkl files
+│       └── dataset/
+│           └── component3_training_v2.csv
 │
-├── frontend/
+├── frontend_react/
 │   └── src/
 │       ├── pages/
-│       │   ├── Dashboard.jsx
-│       │   └── Simulation.jsx
-│       ├── components/
-│       │   ├── InputForm.jsx
-│       │   ├── ResultCard.jsx
-│       │   ├── ProcessSteps.jsx
-│       │   ├── HistoryPanel.jsx
-│       │   └── SafetyBadge.jsx
+│       │   └── Dashboard.jsx
 │       └── services/
 │           └── api.js
 │
 └── docs/
-    ├── architecture.png
-    ├── api_docs.md
-    └── system_design.md
+    ├── model_description_EN.docx
+    └── model_description_EN_SI.md
 ```
 
 ---
@@ -219,10 +205,12 @@ cd backend
 pip install -r requirements.txt
 ```
 
-### 2. Train the model
+### 2. Train the model (Google Colab recommended)
 ```bash
-cd ml_training/material_model
-python train.py
+# Upload component3_training_v2.csv to Colab
+# Run train_v2.py
+# Download model.pkl, encoders.pkl, scaler.pkl
+# Paste into backend/app/models/material_model/
 ```
 
 ### 3. Start backend
@@ -231,11 +219,27 @@ cd backend
 uvicorn app.main:app --reload
 ```
 
-### 4. API endpoints
+### 4. Start frontend
+```bash
+cd frontend_react
+npm start
 ```
-POST /optimize   → Generate process recipe
-GET  /history    → Get past optimizations
-GET  /health     → API health check
+
+### 5. API endpoints
+```
+POST /api/optimize    → Generate process recipe
+GET  /api/history     → Get past optimizations
+GET  /api/health      → API health check
+GET  /api/materials   → Get all 14 supported materials
+```
+
+### 6. Verify startup
+```
+model.pkl loaded - Classes: ['Mechanical', 'Thermal']
+encoders.pkl loaded
+scaler.pkl loaded
+Firebase connected!
+INFO: Uvicorn running on http://127.0.0.1:8000
 ```
 
 ---
@@ -254,20 +258,32 @@ This component integrates with:
 
 | Metric | Value |
 |---|---|
-| Train/Test Accuracy | 96.32% |
-| Cross Validation (5-fold) | 94.85% ± 1.23% |
-| Training rows | 5,440 |
-| Test rows | 1,360 |
-| Classes | Chemical · Mechanical · Thermal |
+| Train/Test Accuracy | **94.56%** |
+| Cross Validation (5-fold) | **93.69% ± 0.45%** |
+| Training rows | 5,600 |
+| Test rows | 1,400 |
+| Noise added | 5% random label flip |
+| Classes | Mechanical · Thermal |
 
 | Class | Precision | Recall | F1-Score |
 |---|---|---|---|
-| Chemical | 0.97 | 0.96 | 0.96 |
-| Mechanical | 0.95 | 0.97 | 0.96 |
-| Thermal | 0.96 | 0.94 | 0.95 |
+| Mechanical | 0.95 | 0.96 | 0.95 |
+| Thermal | 0.94 | 0.93 | 0.93 |
+
+---
+
+## 🧠 Hybrid Architecture — Why 3 Models?
+
+| Approach | Used For | Reason |
+|---|---|---|
+| **ML — Decision Tree** | Method prediction | Pattern recognition from 7,000 training examples |
+| **Math — MCDM** | Parameter calculation | Scientific precision using real benchmark averages |
+| **Rules — Expert System** | Safety classification | Fixed standards that must never be approximated |
+
+---
 
 <div align="center">
 
-**R26-IT-015 | SLIIT | 2025**
+**R26-IT-015 | SLIIT | 2025 | IT22277640**
 
 </div>
