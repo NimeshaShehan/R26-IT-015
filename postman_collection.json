@@ -1,0 +1,245 @@
+{
+  "info": {
+    "name": "EcoVision API Collection",
+    "description": "Postman collection for EcoVision — Smart Valuation & Material Routing API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Forecast",
+      "item": [
+        {
+          "name": "Get Metals",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/forecast/metals",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "forecast",
+                "metals"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Predict Forecast",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metal\": \"gold\",\n  \"weight_kg\": 10\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/forecast/predict",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "forecast",
+                "predict"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current Prices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/forecast/current-prices",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "forecast",
+                "current-prices"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Market Prices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/forecast/market-prices",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "forecast",
+                "market-prices"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Disposition",
+      "item": [
+        {
+          "name": "Get Waste Types",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/disposition/waste-types",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "disposition",
+                "waste-types"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Calculate Disposition",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"waste_type\": \"Mixed Plastics\",\n  \"weight_kg\": 1000,\n  \"facility_name\": \"Test Facility\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/disposition/calculate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "disposition",
+                "calculate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Download Manifest PDF",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"waste_type\": \"Mixed Plastics\",\n  \"weight_kg\": 1000,\n  \"facility_name\": \"Test Facility\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/disposition/manifest/pdf",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "disposition",
+                "manifest",
+                "pdf"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Export Manifest JSON",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"waste_type\": \"Mixed Plastics\",\n  \"weight_kg\": 1000,\n  \"facility_name\": \"Test Facility\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/disposition/manifest/json",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "disposition",
+                "manifest",
+                "json"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
